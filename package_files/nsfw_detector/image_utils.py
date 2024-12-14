@@ -23,6 +23,8 @@ if pil_image is not None:
 # loads an image and performs the transformations 
 def load_image(path, dtype="float32"):
     img = pil_image.open(path)
+    if img.mode != 'RGB':
+        img = img.convert('RGB')
     size = 240
     img = img.resize((size,size))
     x = np.asarray(img, dtype=dtype)
